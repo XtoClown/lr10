@@ -48,9 +48,16 @@ function spinFunction(){
             work = 0;
             userBalance = userBalance - userBet;
             console.log(userBalance);
-            spin1 = (height + 2) * reelIcons + Math.round(Math.random() * reelIcons) - height;
-            spin2 = (height + 2) * reelIcons + Math.round(Math.random() * reelIcons) - 2 - height;
-            spin3 = (height + 2) * reelIcons + Math.round(Math.random() * reelIcons) - 3 - height;
+            if(document.querySelector(".reel").offsetWidth < 1000){
+                spin1 = (height + 2) * reelIcons + Math.round(Math.random() * reelIcons) - height;
+                spin2 = (height + 2) * reelIcons + Math.round(Math.random() * reelIcons) - 2 - height;
+                spin3 = (height + 2) * reelIcons + Math.round(Math.random() * reelIcons) - 3 - height;
+            }
+            else{
+                spin1 = (height + 2) * reelIcons + Math.round(Math.random() * reelIcons);
+                spin2 = (height + 2) * reelIcons + Math.round(Math.random() * reelIcons);
+                spin3 = (height + 2) * reelIcons + Math.round(Math.random() * reelIcons);
+            }
             reel1.style.transition = `background-position-y ${(8 + 1 * spin1) * spinTime}ms`;
             reel1.style.backgroundPositionY = `${posY1 + spin1 * height}vh`;
             reel2.style.transition = `background-position-y ${(8 + 2 * spin2) * spinTime}ms`;
