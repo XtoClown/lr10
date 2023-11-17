@@ -40,11 +40,8 @@ function spinFunction(){
     if(userBet <= userBalance && userBet != 0){
         work = 1;
         while(work == 1){
-            let height = 0;
-            if(document.querySelector(".main").offsetWidth < 1000){
-                height = Math.round(document.querySelector(".reel").offsetHeight / 27);
-                console.log(height);
-            }
+            let height = Math.round(document.querySelector(".reel").offsetHeight / 27);
+            console.log(height);
             document.getElementById("yourWin").innerHTML = "???";
             console.log(userBet);
             btn.disabled = true;
