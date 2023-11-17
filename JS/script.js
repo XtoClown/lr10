@@ -30,7 +30,6 @@ let newPosY2 = 0;
 let newPosY3 = 0;
 let spinTime = 100;
 let reelIcons = 9;
-let height = 15.01;
 let spin1 = 0;
 let spin2 = 0;
 let spin3 = 0;
@@ -41,25 +40,31 @@ function spinFunction(){
     if(userBet <= userBalance && userBet != 0){
         work = 1;
         while(work == 1){
+            let height = 0;
+            if(document.querySelector(".main").offsetWidth < 1000){
+                height = Math.round(document.querySelector(".reel").offsetHeight / 27);
+                console.log(height);
+            }
             document.getElementById("yourWin").innerHTML = "???";
             console.log(userBet);
             btn.disabled = true;
             work = 0;
             userBalance = userBalance - userBet;
             console.log(userBalance);
-            spin1 = (1 + 4) * reelIcons + Math.round(Math.random() * reelIcons);
-            spin2 = (2 + 4) * reelIcons + Math.round(Math.random() * reelIcons);
-            spin3 = (3 + 4) * reelIcons + Math.round(Math.random() * reelIcons);
-            reel1.style.transition = `background-position-y ${(8 + spin1) * spinTime}ms`;
+            spin1 = (height + 2) * reelIcons + Math.round(Math.random() * reelIcons) - height;
+            spin2 = (height + 2) * reelIcons + Math.round(Math.random() * reelIcons) - 2 - height;
+            spin3 = (height + 2) * reelIcons + Math.round(Math.random() * reelIcons) - 3 - height;
+            reel1.style.transition = `background-position-y ${(8 + 1 * spin1) * spinTime}ms`;
             reel1.style.backgroundPositionY = `${posY1 + spin1 * height}vh`;
-            reel2.style.transition = `background-position-y ${(8 + spin2) * spinTime}ms`;
+            reel2.style.transition = `background-position-y ${(8 + 2 * spin2) * spinTime}ms`;
             reel2.style.backgroundPositionY = `${posY2 + spin2 * height}vh`;
-            reel3.style.transition = `background-position-y ${(8 + spin3) * spinTime}ms`;
+            reel3.style.transition = `background-position-y ${(8 + 3 * spin3) * spinTime}ms`;
             reel3.style.backgroundPositionY = `${posY3 + spin3 * height}vh`;
             setTimeout(()=>{
                 let spinResult1 = spin1%reelIcons;
                 let spinResult2 = spin2%reelIcons;
                 let spinResult3 = spin3%reelIcons;
+                console.log(spinResult1, spinResult2, spinResult3);
                 resultCalc(spinResult1, spinResult2, spinResult3, userBet);
                 reel1.style.backgroundPositionY = posY1;
                 reel2.style.backgroundPositionY = posY2;
@@ -69,7 +74,7 @@ function spinFunction(){
                 reel3.style.transition = "none";
                 console.log("10");
                 btn.disabled = false;
-            }, (8 + spin3) * spinTime + 3 * 700);
+            }, (8 + 3 * spin3) * spinTime + 3 * 150);
         }
     }
     if(userBet > userBalance && userBalance != 0){
