@@ -40,7 +40,13 @@ function spinFunction(){
     if(userBet <= userBalance && userBet != 0){
         work = 1;
         while(work == 1){
-            let height = Math.round(document.querySelector(".reel").offsetHeight / 27);
+            let height = 0;
+            if(document.querySelector(".reel").offsetWidth < 1000){
+                height = Math.round(document.querySelector(".reel").offsetHeight / 27);
+            }
+            else{
+                height = 15.01;
+            }
             console.log(height);
             document.getElementById("yourWin").innerHTML = "???";
             console.log(userBet);
