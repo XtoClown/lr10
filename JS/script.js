@@ -41,7 +41,7 @@ function spinFunction(){
         work = 1;
         while(work == 1){
             let height = 0;
-            if(document.querySelector(".reel").offsetWidth < 1000){
+            if(window.screen.width < 1000){
                 height = Math.round(document.querySelector(".reel").offsetHeight / 27);
             }
             else{
@@ -54,7 +54,7 @@ function spinFunction(){
             work = 0;
             userBalance = userBalance - userBet;
             console.log(userBalance);
-            if(document.querySelector(".reel").offsetWidth < 1000){
+            if(window.screen.width < 1000){
                 spin1 = (height + 2) * reelIcons + Math.round(Math.random() * reelIcons) - height;
                 spin2 = (height + 2) * reelIcons + Math.round(Math.random() * reelIcons) - 2 - height;
                 spin3 = (height + 2) * reelIcons + Math.round(Math.random() * reelIcons) - 3 - height;
